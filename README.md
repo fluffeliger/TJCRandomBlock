@@ -24,4 +24,4 @@ settings:
 
 ### Plugin Laden
 
-Anschließend zeiht man die plugin jar in den plugins ordner.
+Anschließend zieht man die Plugin-Jar in den Plugins-Ordner.
