@@ -1,6 +1,6 @@
 name: TJC_Random_Block
 author: fluffy
-version: 1.0
+version: 1.1.0
 main: de.fluffy.tjc.random_block.RandomBlockPlugin
 description: Bewerbungsplugin für den TJC Server
 api-version: '1.20'
@@ -9,3 +9,4 @@ prefix: RandomBlock
 commands:
   world:
     description: Teleports you to a world
+    permission: tjc.command.world

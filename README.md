@@ -6,6 +6,7 @@ Wer als letztes Steht, gewinnt.
 ## Setup
 
 Damit man nicht dauerhaft unnötig das End und den Nether generiert sollte man es deaktivieren.
+Außerdem wird die standard Welt als Lobby verwendet.
 
 ### Nether
 
@@ -21,7 +22,3 @@ allow-nether=false
 settings:
   allow-end: false
 ````
-
-### Plugin Laden
-
-Anschließend zieht man die Plugin-Jar in den Plugins-Ordner.
