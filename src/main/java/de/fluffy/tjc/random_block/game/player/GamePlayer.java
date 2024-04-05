@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class GamePlayer {
 
@@ -186,6 +187,7 @@ public class GamePlayer {
         getConfigPlayerInterface().addLosses(1);
         setState(PlayerState.DEAD);
         update();
+        reward(Objects.requireNonNull(gameHandler.getRewardingCoinsForThisRound()));
     }
 
     public void onMove(@NotNull PlayerMoveEvent event) {

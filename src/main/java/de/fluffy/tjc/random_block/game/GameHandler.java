@@ -202,13 +202,9 @@ public class GameHandler {
                     gameState = GameState.RUNNING;
                 });
             }
-            case RUNNING -> {
-                gamePlayerManager.getAlivePlayers().forEach(player -> {
-                    player.getPlayer().sendMessage(MiniMessage.miniMessage().deserialize(
-                            "<gray>Changed GameState to <aqua>" + gameState
-                    ));
-                });
-            }
+            case RUNNING -> gamePlayerManager.getAlivePlayers().forEach(player -> player.getPlayer().sendMessage(MiniMessage.miniMessage().deserialize(
+                    "<gray>Changed GameState to <aqua>" + gameState
+            )));
             case ENDING -> {
                 GamePlayer winner = gamePlayerManager.getAlivePlayers().size() == 1 ? gamePlayerManager.getAlivePlayers().iterator().next() : null;
                 new BukkitRunnable() {
