@@ -12,6 +12,7 @@ import de.fluffy.tjc.random_block.game.message.ui.SoundBundle;
 import de.fluffy.tjc.random_block.game.player.scoreboard.ScoreboardPlayer;
 import de.fluffy.tjc.random_block.generation.world.CustomWorld;
 import de.fluffy.tjc.random_block.generation.world.WorldManager;
+import de.fluffy.tjc.random_block.gui.item.preset.KitChestItem;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -36,7 +37,7 @@ public class GamePlayer {
     private BukkitTask gameTask = null;
     private int maxWaitTicks = 20*10;
     private int currentWaitTicks = maxWaitTicks;
-    private SoundBundle itemDropSoundBundle = new SoundBundle(Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+    private final SoundBundle itemDropSoundBundle = new SoundBundle(Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
     private final ScoreboardPlayer scoreboardPlayer;
 
     public GamePlayer(@NotNull Player player) {
@@ -198,12 +199,10 @@ public class GamePlayer {
     }
 
     public void updateInventory() {
+        player.getInventory().clear();
         switch (getState()) {
-            case LOBBY -> {
-                player.getInventory().clear();
-                // TODO
-            }
-            case ALIVE, DEAD -> player.getInventory().clear();
+            case LOBBY -> player.getInventory().setItem(4, KitChestItem.getItem());
+            case ALIVE, DEAD -> {}
         }
     }
 

@@ -14,6 +14,10 @@ public class ListenerHandler {
         new PlayerMoveListener(instance);
         new EntityDamageListener(instance);
         new PlayerDeathListener(instance);
+
+        new InventoryClickListener(instance);
+        new PlayerDropItemListener(instance);
+        new PlayerInteractListener(instance);
     }
 
 }

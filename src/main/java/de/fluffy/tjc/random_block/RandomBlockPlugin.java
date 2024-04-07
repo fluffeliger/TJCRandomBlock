@@ -8,6 +8,8 @@ import de.fluffy.tjc.random_block.game.player.GamePlayerManager;
 import de.fluffy.tjc.random_block.generation.chunk.VoidChunkGenerator;
 import de.fluffy.tjc.random_block.generation.world.CustomWorld;
 import de.fluffy.tjc.random_block.generation.world.WorldManager;
+import de.fluffy.tjc.random_block.gui.inventory.GUIInventory;
+import de.fluffy.tjc.random_block.gui.item.GUIItem;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,8 +23,6 @@ public class RandomBlockPlugin extends JavaPlugin {
     private static RandomBlockPlugin pluginInstance;
     private final DataInterface dataInterface = new DataInterface();
     private final WorldManager worldManager = new WorldManager();
-    private GamePlayerManager gamePlayerManager;
-    private GameHandler gameHandler;
     private File voidOriginFolder;
 
     @Override
@@ -61,8 +61,8 @@ public class RandomBlockPlugin extends JavaPlugin {
 
         prepareVoidWorld();
 
-        gameHandler = new GameHandler();
-        gamePlayerManager = new GamePlayerManager();
+        GameHandler gameHandler = new GameHandler();
+        /*GamePlayerManager gamePlayerManager =*/ new GamePlayerManager();
 
         new WorldCommand(pluginInstance, "world");
         new ListenerHandler().registerAll(pluginInstance);
@@ -70,6 +70,9 @@ public class RandomBlockPlugin extends JavaPlugin {
         Bukkit.getOnlinePlayers().forEach(player ->
                 player.kick(MiniMessage.miniMessage().deserialize("<gray>Du wurdest gekickt\n\nGrund: <aqua>Plugin Startup"))
         );
+
+        GUIItem.prepareItems();
+        GUIInventory.prepareInventories();
 
         gameHandler.update();
     }
@@ -101,10 +104,6 @@ public class RandomBlockPlugin extends JavaPlugin {
         );
         void_copy.loadAndGenerate();
         void_copy.loadStartingArea();
-    }
-
-    public File getRelativeFile(Path path) {
-        return Path.of(getDataFolder().getPath(), path.toFile().getPath()).toFile();
     }
 
     public static RandomBlockPlugin getInstance() {
